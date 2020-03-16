@@ -209,3 +209,10 @@ pyvenv.cfg
 .venv
 pip-selfcheck.json
 
+.DS_Store
+.idea/ap_line_notify.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+ap_line_notify/.DS_Store
