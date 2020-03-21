@@ -216,4 +216,3 @@ pip-selfcheck.json
 .idea/modules.xml
 .idea/vcs.xml
 ap_line_notify/.DS_Store
-!/ap_line_notify/settings.json
