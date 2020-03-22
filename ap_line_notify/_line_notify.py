@@ -72,9 +72,11 @@ class LineNotify:
     # ----------------------------------------------------------------------- #
     def send_text(self, message: str) -> Tuple[int, str]:
 
-        """Method use to send text message via Line Notify
+        """
+        Method use to send text message via Line Notify
         Argument(s):
-            message     : [String] Text to send"""
+            message     : [String] Text to send
+        """
 
         headers = {'Authorization': 'Bearer ' + self.token,
                    'content-type': 'application/x-www-form-urlencoded'}
@@ -87,14 +89,16 @@ class LineNotify:
     def send_sticker(self, sticker_id: int, package_id: int,
                      message: str = ' ') -> Tuple[int, str]:
 
-        """Method use to send sticker via Line Notify
+        """
+        Method use to send sticker via Line Notify
         Argument(s):
             sticker_id  : [Integer] ID of the sticker
             package_id  : [Integer] ID of the package of the sticker you want
             message     : [String][Default ' '] Text to send with sticker
 
         Find out more about sticker_id and package_id at
-        https://devdocs.line.me/files/sticker_list.pdf"""
+        https://devdocs.line.me/files/sticker_list.pdf
+        """
 
         headers = {'Authorization': 'Bearer ' + self.token,
                    'content-type': 'application/x-www-form-urlencoded'}
@@ -108,13 +112,15 @@ class LineNotify:
     def send_image(self, image: Union[bytes, str], message: str = ' ') \
             -> Tuple[int, str]:
 
-        """Method use to send sticker via Line Notify
+        """
+        Method use to send sticker via Line Notify
         Argument(s):
             image       : [bytes|string] image to send, can be either
                           - bytes object image
                           - image file's local path
                           - image file's web url
-            message     : [String][Default ' '] Text to send with image"""
+            message     : [String][Default ' '] Text to send with image
+        """
 
         headers = {'Authorization': 'Bearer ' + self.token}
 
