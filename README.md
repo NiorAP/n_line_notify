@@ -13,12 +13,12 @@ you have to generate API token first
 
 ## Install Library:
 ```shell script
-pip install git+https://github.com/NiorAP/a_line_notify.git
+pip install git+https://github.com/NiorAP/ap_line_notify.git
 ```
 
 ## Example:
 ```python
-from a_line_notify import LineNotify
+from ap_line_notify import LineNotify
 
 token = 'Token generated from link above'
 notify = LineNotify(token)
