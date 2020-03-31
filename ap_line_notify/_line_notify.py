@@ -155,9 +155,12 @@ class LineNotify:
 # --------------------------------------------------------------------------- #
 
 
-def test_line_notify(token: str) -> None:
+def test_line_notify(token: str = None) -> None:
 
     """Function that performs test on all command of LineNotify class"""
+
+    if token is None:
+        token = settings['token']
 
     notify = LineNotify(token)
 
