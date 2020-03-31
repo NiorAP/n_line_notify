@@ -5,10 +5,15 @@
 import sys
 import requests
 from typing import Tuple, Union
-# from ap_line_notify._settings import settings
 import json
-from importlib.resources import read_text
+from importlib.resources import read_text, read_binary
+
+# --------------------------------------------------------------------------- #
+#                                Load Settings                                #
+# --------------------------------------------------------------------------- #
+
 settings = json.loads(read_text('ap_line_notify', 'settings.json'))
+
 # --------------------------------------------------------------------------- #
 #                              Class Definitions                              #
 # --------------------------------------------------------------------------- #
@@ -175,7 +180,7 @@ def test_line_notify(token: str) -> None:
     # ----------------------------------------------------------------------- #
     print('Testing send image via Line Notify')
     response_3 = notify.send_image(
-        settings['sample_image'],
+        read_binary('ap_line_notify', 'NAP.jpg'),
         'Test send image via Line Notify')
     if response_3[0] == 200:
         print('test send image via Line Notify Successfully')
