@@ -10,5 +10,6 @@ setup(
     author_email='nior.a.p@hotmail.com',
     description='Line Notify Library by Nior.A.P',
     keywords=['Python', 'Line API', 'Line Notify', 'Nior.A.P'],
-    install_requires=['requests']
+    install_requires=['requests'],
+    include_package_data=True
 )
