@@ -5,7 +5,9 @@
 import sys
 import requests
 from typing import Tuple, Union
-from ap_line_notify._settings import settings
+# from ap_line_notify._settings import settings
+import json
+from importlib.resources import read_text
 
 # --------------------------------------------------------------------------- #
 #                              Class Definitions                              #
@@ -186,6 +188,8 @@ def test_line_notify(token: str) -> None:
 
 
 if __name__ == '__main__':
+
+    settings = json.loads(read_text('ap_line_notify', 'settings.json'))
 
     # Get all command line arguments
     arg = sys.argv
