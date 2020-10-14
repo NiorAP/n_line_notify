@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='line_notify',
+    name='n_line_notify',
     packages=['line_notify'],
     url='https://github.com/NiorAP/ap_line_notify',
     license='MIT',

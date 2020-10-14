@@ -13,7 +13,7 @@ you have to generate API token first
 
 ## Install Library:
 ```shell script
-pip install git+https://github.com/NiorAP/ap_line_notify.git
+pip install git+https://github.com/NiorAP/n_line_notify.git
 ```
 
 ## Example:
