@@ -3,11 +3,12 @@
 # --------------------------------------------------------------------------- #
 
 import requests
+
 from typing import Tuple, Union
 from numpy import ndarray
 from io import BytesIO
 from imageio import imsave
-from validators import domain
+from urllib.parse import urlparse
 
 # --------------------------------------------------------------------------- #
 #                              Class Definitions                              #
@@ -136,7 +137,8 @@ class LineNotify:
 
         elif isinstance(image, str):
 
-            if domain(image):
+            parsed = urlparse(image)
+            if parsed[1] != '':
                 headers['content-type'] = 'application/x-www-form-urlencoded'
                 data['imageThumbnail'] = image
                 data['imageFullsize'] = image

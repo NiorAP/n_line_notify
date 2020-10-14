@@ -2,7 +2,6 @@
 #                              Import Libraries                               #
 # --------------------------------------------------------------------------- #
 
-from importlib.resources import read_text, read_binary
 import json
 import sys
 from line_notify import LineNotify
@@ -13,7 +12,7 @@ from imageio import imread
 # --------------------------------------------------------------------------- #
 
 try:
-    settings = json.loads(read_text('resources', 'settings.json'))
+    settings = json.loads(open('settings.json').read())
 except FileNotFoundError:
     settings = None
 
@@ -48,15 +47,37 @@ def test(token: str) -> None:
         print('test send sticker via Line Notify failed:', response_2[1])
 
     # ----------------------------------------------------------------------- #
-    print('Testing send image via Line Notify')
+    print('Testing send numpy array image via Line Notify')
     response_3 = notify.send_image(
-        imread(read_binary('resources', 'NAP.jpg')),
-        'Test send (numpy array) image via Line Notify')
+        imread('NAP.jpg'),
+        'Test send numpy array image via Line Notify')
     if response_3[0] == 200:
-        print('test send (numpy array) image via Line Notify Successfully')
+        print('test send numpy array image via Line Notify Successfully')
     else:
-        print('test send (numpy array) image via Line Notify failed:',
+        print('test send numpy array image via Line Notify failed:',
               response_3[1])
+
+    # ----------------------------------------------------------------------- #
+    print('Testing send url image via Line Notify')
+    response_4 = notify.send_image(
+        'https://avatars3.githubusercontent.com/u/48649457',
+        'Test send url image via Line Notify')
+    if response_4[0] == 200:
+        print('test send url image via Line Notify Successfully')
+    else:
+        print('test send url image via Line Notify failed:',
+              response_4[1])
+
+    # ----------------------------------------------------------------------- #
+    print('Testing send image file via Line Notify')
+    response_5 = notify.send_image(
+        'NAP.jpg',
+        'Test send image file via Line Notify')
+    if response_5[0] == 200:
+        print('test send image file via Line Notify Successfully')
+    else:
+        print('test send image file via Line Notify failed:',
+              response_5[1])
 
 # --------------------------------------------------------------------------- #
 #                               Main Executions                               #
