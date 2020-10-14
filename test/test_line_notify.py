@@ -4,7 +4,7 @@
 
 import json
 import sys
-from line_notify import LineNotify
+from n_line_notify import LineNotify
 from imageio import imread
 
 # --------------------------------------------------------------------------- #

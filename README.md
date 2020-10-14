@@ -18,7 +18,7 @@ pip install git+https://github.com/NiorAP/n_line_notify.git
 
 ## Example:
 ```python
-from line_notify import LineNotify
+from n_line_notify import LineNotify
 
 token = 'Token generated from link above'
 notify = LineNotify(token)

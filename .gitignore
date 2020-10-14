@@ -215,7 +215,7 @@ pip-selfcheck.json
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
-line_notify/.DS_Store
+n_line_notify/.DS_Store
 .idea/.name
 !/test/settings.json
 test/settings.json
