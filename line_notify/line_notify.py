@@ -2,17 +2,12 @@
 #                              Import Libraries                               #
 # --------------------------------------------------------------------------- #
 
-import sys
 import requests
 from typing import Tuple, Union
-import json
-from importlib.resources import read_text, read_binary
-
-# --------------------------------------------------------------------------- #
-#                                Load Settings                                #
-# --------------------------------------------------------------------------- #
-
-settings = json.loads(read_text('ap_line_notify', 'settings.json'))
+from numpy import ndarray
+from io import BytesIO
+from imageio import imsave
+from validators import domain
 
 # --------------------------------------------------------------------------- #
 #                              Class Definitions                              #
@@ -116,14 +111,14 @@ class LineNotify:
         return self.__send_line(headers, data)
 
     # ----------------------------------------------------------------------- #
-    def send_image(self, image: Union[bytes, str], message: str = ' ') \
+    def send_image(self, image: Union[ndarray, str], message: str = ' ') \
             -> Tuple[int, str]:
 
         """
         Method use to send sticker via Line Notify
         Argument(s):
-            image       : [bytes|string] image to send, can be either
-                          - bytes object image
+            image       : [numpy.ndarray|string] image to send, can be either
+                          - numpy array image
                           - image file's local path
                           - image file's web url
             message     : [String][Default ' '] Text to send with image
@@ -133,12 +128,15 @@ class LineNotify:
 
         data = {'message': message}
 
-        if type(image) == bytes:
-            return self.__send_line(headers, data, file={'imageFile': image})
+        if isinstance(image, ndarray):
+            temp = BytesIO()
+            imsave(temp, image, format='png')
+            return self.__send_line(headers, data,
+                                    file={'imageFile': temp.getvalue()})
 
-        elif type(image) == str:
+        elif isinstance(image, str):
 
-            if image[:4] == 'http':
+            if domain(image):
                 headers['content-type'] = 'application/x-www-form-urlencoded'
                 data['imageThumbnail'] = image
                 data['imageFullsize'] = image
@@ -150,71 +148,7 @@ class LineNotify:
                     return self.__send_line(headers, data,
                                             file={'imageFile': file})
 
-# --------------------------------------------------------------------------- #
-#                             Unit Test Functions                             #
-# --------------------------------------------------------------------------- #
-
-
-def test_line_notify(token: str = None) -> None:
-
-    """Function that performs test on all command of LineNotify class"""
-
-    if token is None:
-        token = settings['token']
-
-    notify = LineNotify(token)
-
-    # ----------------------------------------------------------------------- #
-    print('Testing send text via Line Notify')
-    response_1 = notify.send_text('Test send text via Line Notify')
-    if response_1[0] == 200:
-        print('test send text via Line Notify Successfully')
-    else:
-        print('test send text via Line Notify failed:', response_1[1])
-
-    # ----------------------------------------------------------------------- #
-    print('Testing send sticker via Line Notify')
-    response_2 = notify.send_sticker(2, 1, 'Test send sticker via Line Notify')
-    if response_2[0] == 200:
-        print('test send sticker via Line Notify Successfully')
-    else:
-        print('test send sticker via Line Notify failed:', response_2[1])
-
-    # ----------------------------------------------------------------------- #
-    print('Testing send image via Line Notify')
-    response_3 = notify.send_image(
-        read_binary('ap_line_notify', 'NAP.jpg'),
-        'Test send image via Line Notify')
-    if response_3[0] == 200:
-        print('test send image via Line Notify Successfully')
-    else:
-        print('test send image via Line Notify failed:', response_3[1])
-
-# --------------------------------------------------------------------------- #
-#                               Main Executions                               #
-# --------------------------------------------------------------------------- #
-
-
-if __name__ == '__main__':
-
-    # Get all command line arguments
-    arg = sys.argv
-
-    # Check if there are 2 arguments (this filename and token) or not
-    if len(arg) == 2:
-        # Use token from the argument
-        print('Use given token')
-        test_token = arg[1]
-
-    else:
-        # Check if there are more than 2 arguments, print some message
-        if len(arg) > 2:
-            print('Too many arguments, use default test token instead.')
-
-        # Use default test token
-        test_token = settings['token']
-
-    # Call unit test function
-    test_line_notify(test_token)
+        else:
+            raise TypeError
 
 # --------------------------------------------------------------------------- #

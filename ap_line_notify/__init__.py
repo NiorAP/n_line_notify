@@ -1,2 +1,0 @@
-from ap_line_notify._line_notify import LineNotify
-from ap_line_notify._line_notify import test_line_notify
