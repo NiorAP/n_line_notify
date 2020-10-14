@@ -30,7 +30,9 @@ notify.send_text('Test send text via Line Notify')
 notify.send_sticker(2, 1)
 
 # Send image
-notify.send_image('https://avatars3.githubusercontent.com/u/48649457')
+notify.send_image('https://raw.githubusercontent.com/NiorAP/n_line_notify/master/test/NAP.jpg')
+# notify.send_image(YOUR_NUMPY_IMAGE_OBJECT)
+# notify.send_image(PATH_TO_YOUR_IMAGE_FILE)
 ```
 
 Stickers' sticker_id and package_id can be found at

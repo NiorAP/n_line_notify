@@ -60,7 +60,8 @@ def test(token: str) -> None:
     # ----------------------------------------------------------------------- #
     print('Testing send url image via Line Notify')
     response_4 = notify.send_image(
-        'https://avatars3.githubusercontent.com/u/48649457',
+        'https://raw.githubusercontent.com/NiorAP/' +
+        'n_line_notify/master/test/NAP.jpg',
         'Test send url image via Line Notify')
     if response_4[0] == 200:
         print('test send url image via Line Notify Successfully')
