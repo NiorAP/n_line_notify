@@ -218,3 +218,4 @@ pip-selfcheck.json
 line_notify/.DS_Store
 .idea/.name
 !/resources/settings.json
+resources/settings.json
