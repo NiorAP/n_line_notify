@@ -210,9 +210,10 @@ pyvenv.cfg
 pip-selfcheck.json
 
 .DS_Store
-.idea/ap_line_notify.iml
+.idea/n_line_notify.iml
 .idea/inspectionProfiles/
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
 line_notify/.DS_Store
+.idea/.name
