@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='n_line_notify',
     packages=['n_line_notify'],
-    url='https://github.com/NiorAP/ap_line_notify',
+    url='https://github.com/NiorAP/n_line_notify',
     license='MIT',
     author='Nior.A.P',
     author_email='nior.a.p@hotmail.com',
