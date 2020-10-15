@@ -64,11 +64,11 @@ class LineNotify:
 
     # ----------------------------------------------------------------------- #
     # Request Sender Private Method, Send POST request to Line Notify server
-    def __send_line(self, headers: dict, data: dict, file: dict = None) \
+    def __send_line(self, headers: dict, data: dict, file_: dict = None) \
             -> Tuple[int, str]:
 
         response = requests.post('https://notify-api.line.me/api/notify',
-                                 headers=headers, data=data, files=file)
+                                 headers=headers, data=data, files=file_)
 
         return self.__read_response(response)
 
@@ -133,7 +133,7 @@ class LineNotify:
             temp = BytesIO()
             imsave(temp, image, format='png')
             return self.__send_line(headers, data,
-                                    file={'imageFile': temp.getvalue()})
+                                    file_={'imageFile': temp.getvalue()})
 
         elif isinstance(image, str):
 
@@ -145,10 +145,10 @@ class LineNotify:
                 return self.__send_line(headers, data)
 
             else:
-                with open(image, 'rb') as file:
+                with open(image, 'rb') as f:
 
                     return self.__send_line(headers, data,
-                                            file={'imageFile': file})
+                                            file_={'imageFile': f})
 
         else:
             raise TypeError
